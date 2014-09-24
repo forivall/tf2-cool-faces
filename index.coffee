@@ -1,13 +1,20 @@
 fs = require 'fs'
-face = require 'cool-ascii-faces'
+lysergix = require 'lysergix'
+
+tags = ['angry', 'love', 'confused', 'crazy', 'smug', 'surprised', 'hurt', 'sad', 'dancing', 'laughing', 'giving up', 'running', 'other actions', 'evil', 'friends', 'meh']
+
+getRandomTag = ->
+  tags[Math.floor(Math.random() * tags.length)]
 
 module.exports = (filename) ->
   timeoutId = null
   makeFace = ->
-    newFace = "say \"#{face()}\"\n"
+    face = lysergix.getRandomFace(getRandomTag())
+    newFace = """// #{face.description or face.tag}
+    say \"#{face.content}\"\n"""
     fs.writeFile filename, newFace, (err) ->
       return console.log(err) if err
-      timeoutId = setTimeout makeFace, 1000
+      timeoutId = setTimeout makeFace, 500
       return
   faceRunner =
     stop: -> clearTimeout timeoutId
