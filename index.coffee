@@ -3,13 +3,10 @@ lysergix = require 'lysergix'
 
 tags = ['angry', 'love', 'confused', 'crazy', 'smug', 'surprised', 'hurt', 'sad', 'dancing', 'laughing', 'giving up', 'running', 'other actions', 'evil', 'friends', 'meh']
 
-getRandomTag = ->
-  tags[Math.floor(Math.random() * tags.length)]
-
 module.exports = (filename) ->
   timeoutId = null
   makeFace = ->
-    face = lysergix.getRandomFace(getRandomTag())
+    face = lysergix.getRandomFace(tags)
     newFace = """// #{face.description or face.tag}
     say \"#{face.content}\"\n"""
     fs.writeFile filename, newFace, (err) ->

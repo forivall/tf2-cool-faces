@@ -13,6 +13,6 @@
   "license": "BSD",
   "dependencies": {
     "optimist": "~0.6.0",
-    "lysergix": "0.0.9"
+    "lysergix": "~1.0.0"
   }
 }
